@@ -17,6 +17,9 @@ const theme = createMuiTheme({
       main: green[300],
     },
   },
+  typography: {
+    h3: { fontWeight: "500" },
+  },
 })
 
 export default theme
