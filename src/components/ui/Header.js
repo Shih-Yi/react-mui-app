@@ -21,7 +21,7 @@ function ElevationScroll(props) {
 
 const Header = () => (
   <ElevationScroll>
-    <AppBar>
+    <AppBar position="fixed" color="primary">
       <Toolbar>React MUI APP</Toolbar>
     </AppBar>
   </ElevationScroll>
