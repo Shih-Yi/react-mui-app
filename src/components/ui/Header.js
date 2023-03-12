@@ -29,15 +29,18 @@ const Header = () => {
   const classes = useStyles()
 
   return (
-    <ElevationScroll>
-      <AppBar position="fixed" color="primary">
-        <Toolbar>
-          <Typography variant="h3" color="error">
-            React MUI APP
-          </Typography>
-        </Toolbar>
-      </AppBar>
-    </ElevationScroll>
+    <React.Fragment>
+      <ElevationScroll>
+        <AppBar position="fixed" color="primary">
+          <Toolbar>
+            <Typography variant="h3" color="secondary">
+              React MUI APP
+            </Typography>
+          </Toolbar>
+        </AppBar>
+      </ElevationScroll>
+      <div className={classes.toolbarMargin} />
+    </React.Fragment>
   )
 }
 
