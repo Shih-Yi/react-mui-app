@@ -2,7 +2,7 @@ import { createMuiTheme } from "@material-ui/core/styles"
 import purple from "@material-ui/core/colors/purple"
 import blue from "@material-ui/core/colors/blue"
 
-const mainBlue = "#e6f542"
+const mainBlue = "#d7e4fa"
 
 const theme = createMuiTheme({
   palette: {
