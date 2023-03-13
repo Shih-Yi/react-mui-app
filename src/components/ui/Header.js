@@ -9,6 +9,8 @@ import Button from "@material-ui/core/Button"
 import { Link } from "react-router-dom"
 import Menu from "@material-ui/core/Menu"
 import MenuItem from "@material-ui/core/MenuItem"
+import useMediaQuery from "@material-ui/core/useMediaQuery"
+import { useTheme } from "@material-ui/core/styles"
 
 import logo from "../../assets/logo.svg"
 
@@ -31,10 +33,22 @@ function ElevationScroll(props) {
 const useStyles = makeStyles((theme) => ({
   toolbarMargin: {
     ...theme.mixins.toolbar,
-    marginBottom: "1em",
+    marginBottom: "2em",
+    [theme.breakpoints.down("md")]: {
+      marginBottom: "1em",
+    },
+    [theme.breakpoints.down("xs")]: {
+      marginBottom: "0.4em",
+    },
   },
   logo: {
-    height: "5em",
+    height: "5.5em",
+    [theme.breakpoints.down("md")]: {
+      height: "4em",
+    },
+    [theme.breakpoints.down("xs")]: {
+      height: "3em",
+    },
   },
   logoContainer: {
     padding: 0,
@@ -72,6 +86,8 @@ const useStyles = makeStyles((theme) => ({
 
 const Header = () => {
   const classes = useStyles()
+  const myTheme = useTheme()
+  const matches = useMediaQuery(myTheme.breakpoints.down("md"))
   const [value, setValue] = useState(0)
   const [anchorEl, setAnchorEl] = useState(null)
   const [selectedIndex, setSelectedIndex] = useState(0)
@@ -163,6 +179,77 @@ const Header = () => {
     }
   }, [value])
 
+  const tabs = (
+    <React.Fragment>
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        className={classes.tabContainer}
+        indicatorColor="primary"
+      >
+        <Tab className={classes.tab} component={Link} to="/" label="Home" />
+        <Tab
+          className={classes.tab}
+          component={Link}
+          to="/services"
+          label="Services"
+          aria-controls={anchorEl ? "simple-menu" : undefined}
+          aria-haspopup={anchorEl ? "true" : undefined}
+          onMouseOver={(e) => handleClick(e)}
+        />
+        <Tab
+          className={classes.tab}
+          component={Link}
+          to="/revolution"
+          label="The Revolution"
+        />
+        <Tab
+          className={classes.tab}
+          component={Link}
+          to="/about"
+          label="About Us"
+        />
+        <Tab
+          className={classes.tab}
+          component={Link}
+          to="/contact"
+          label="Contact Us"
+        />
+      </Tabs>
+      <Button variant="contained" color="secondary" className={classes.button}>
+        Free Estimate
+      </Button>
+      {/* Menu */}
+      <Menu
+        id="simple-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+        classes={{ paper: classes.menu }}
+        MenuListProps={{ onMouseLeave: handleClose }}
+        elevation={0}
+      >
+        {menuOptions.map((option, index) => (
+          <MenuItem
+            key={option}
+            onClick={(event) => {
+              handleMenuItemClick(event, index)
+              setValue(1)
+              handleClose()
+            }}
+            component={Link}
+            to={option.link}
+            classes={{ root: classes.menuItem }}
+            selected={index === selectedIndex && value === 1}
+          >
+            {option.name}
+          </MenuItem>
+        ))}
+      </Menu>
+    </React.Fragment>
+  )
+
   return (
     <React.Fragment>
       <ElevationScroll>
@@ -177,81 +264,7 @@ const Header = () => {
             >
               <img alt="logo" className={classes.logo} src={logo} />
             </Button>
-            <Tabs
-              value={value}
-              onChange={handleChange}
-              className={classes.tabContainer}
-              indicatorColor="primary"
-            >
-              <Tab
-                className={classes.tab}
-                component={Link}
-                to="/"
-                label="Home"
-              />
-              <Tab
-                className={classes.tab}
-                component={Link}
-                to="/services"
-                label="Services"
-                aria-controls={anchorEl ? "simple-menu" : undefined}
-                aria-haspopup={anchorEl ? "true" : undefined}
-                onMouseOver={(e) => handleClick(e)}
-              />
-              <Tab
-                className={classes.tab}
-                component={Link}
-                to="/revolution"
-                label="The Revolution"
-              />
-              <Tab
-                className={classes.tab}
-                component={Link}
-                to="/about"
-                label="About Us"
-              />
-              <Tab
-                className={classes.tab}
-                component={Link}
-                to="/contact"
-                label="Contact Us"
-              />
-            </Tabs>
-            <Button
-              variant="contained"
-              color="secondary"
-              className={classes.button}
-            >
-              Free Estimate
-            </Button>
-            {/* Menu */}
-            <Menu
-              id="simple-menu"
-              anchorEl={anchorEl}
-              keepMounted
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
-              classes={{ paper: classes.menu }}
-              MenuListProps={{ onMouseLeave: handleClose }}
-              elevation={0}
-            >
-              {menuOptions.map((option, index) => (
-                <MenuItem
-                  key={option}
-                  onClick={(event) => {
-                    handleMenuItemClick(event, index)
-                    setValue(1)
-                    handleClose()
-                  }}
-                  component={Link}
-                  to={option.link}
-                  classes={{ root: classes.menuItem }}
-                  selected={index === selectedIndex && value === 1}
-                >
-                  {option.name}
-                </MenuItem>
-              ))}
-            </Menu>
+            {matches ? null : tabs}
           </Toolbar>
         </AppBar>
       </ElevationScroll>
