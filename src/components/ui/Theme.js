@@ -1,6 +1,6 @@
 import { createMuiTheme } from "@material-ui/core/styles"
 import purple from "@material-ui/core/colors/purple"
-import green from "@material-ui/core/colors/green"
+import blue from "@material-ui/core/colors/blue"
 
 const mainBlue = "#e6f542"
 
@@ -14,11 +14,21 @@ const theme = createMuiTheme({
       main: purple[100],
     },
     secondary: {
-      main: green[300],
+      main: blue[100],
     },
   },
   typography: {
-    h3: { fontWeight: "500" },
+    tab: {
+      fontFamily: "Raleway",
+      textTransform: "none",
+      fontWeight: 700,
+      fontSize: "1rem",
+    },
+    estimate: {
+      fontFamily: "Pacifico",
+      fontSize: "1rem",
+      textTransform: "none",
+    },
   },
 })
 

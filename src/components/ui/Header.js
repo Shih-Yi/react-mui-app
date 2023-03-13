@@ -3,6 +3,9 @@ import AppBar from "@material-ui/core/AppBar"
 import Toolbar from "@material-ui/core/Toolbar"
 import useScrollTrigger from "@material-ui/core/useScrollTrigger"
 import { makeStyles } from "@material-ui/core/styles"
+import Tabs from "@material-ui/core/Tabs"
+import Tab from "@material-ui/core/Tab"
+import Button from "@material-ui/core/Button"
 
 import logo from "../../assets/logo.svg"
 
@@ -27,7 +30,24 @@ const useStyles = makeStyles((theme) => ({
     ...theme.mixins.toolbar,
     marginBottom: "1em",
   },
-  logo: { height: "5em" },
+  logo: {
+    height: "5em",
+  },
+  tabContainer: {
+    marginLeft: " auto",
+  },
+  tab: {
+    ...theme.typography.tab,
+    minWidth: 10,
+    marginLeft: "25px",
+  },
+  button: {
+    ...theme.typography.estimate,
+    borderRadius: "50px",
+    marginLeft: "25px",
+    marginRight: "25px",
+    height: "40px",
+  },
 }))
 
 const Header = () => {
@@ -39,6 +59,20 @@ const Header = () => {
         <AppBar position="fixed" color="primary">
           <Toolbar disableGutters>
             <img alt="logo" className={classes.logo} src={logo} />
+            <Tabs className={classes.tabContainer}>
+              <Tab className={classes.tab} label="Home" />
+              <Tab className={classes.tab} label="Services" />
+              <Tab className={classes.tab} label="The Revolution" />
+              <Tab className={classes.tab} label="About Us" />
+              <Tab className={classes.tab} label="Contact Us" />
+            </Tabs>
+            <Button
+              variant="contained"
+              color="secondary"
+              className={classes.button}
+            >
+              Free Estimate
+            </Button>
           </Toolbar>
         </AppBar>
       </ElevationScroll>
