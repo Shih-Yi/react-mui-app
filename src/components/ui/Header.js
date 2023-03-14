@@ -209,6 +209,7 @@ const Header = () => {
       >
         {routes.map((route, index) => (
           <Tab
+            key={`Tab-${index}`}
             className={classes.tab}
             component={Link}
             to={route.link}
@@ -264,7 +265,7 @@ const Header = () => {
         classes={{ paper: classes.drawer }}
       >
         <List disablePadding>
-          {routes.map((route) => (
+          {routes.map((route, index) => (
             <ListItem
               divider
               button
@@ -279,7 +280,7 @@ const Header = () => {
               <ListItemText
                 className={
                   value === route.activeIndex
-                    ? [classes.drawerItem, classes.drawerItemSelected]
+                    ? [classes.drawerItem, classes.drawerItemSelected].join(" ")
                     : classes.drawerItem
                 }
                 disableTypography
@@ -303,7 +304,7 @@ const Header = () => {
             <ListItemText
               className={
                 value === 5
-                  ? [classes.drawerItem, classes.drawerItemSelected]
+                  ? [classes.drawerItem, classes.drawerItemSelected].join(" ")
                   : classes.drawerItem
               }
               disableTypography
