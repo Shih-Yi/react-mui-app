@@ -109,7 +109,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
   },
   drawerItemSelected: {
-    opacity: 1,
+    "& .MuiListItemText-root": {
+      opacity: 1,
+    },
   },
   appbar: {
     zIndex: theme.zIndex.modal + 1,
@@ -280,16 +282,10 @@ const Header = () => {
                 setOpenDrawer(false)
                 setValue(route.activeIndex)
               }}
+              classes={{ selected: classes.drawerItemSelected }}
               selected={value === route.activeIndex}
             >
-              <ListItemText
-                className={
-                  value === route.activeIndex
-                    ? [classes.drawerItem, classes.drawerItemSelected].join(" ")
-                    : classes.drawerItem
-                }
-                disableTypography
-              >
+              <ListItemText className={classes.drawerItem} disableTypography>
                 {route.name}
               </ListItemText>
             </ListItem>
@@ -299,21 +295,17 @@ const Header = () => {
             button
             component={Link}
             to="/estimate"
-            className={classes.drawerItemEstimate}
+            classes={{
+              root: classes.drawerItemEstimate,
+              selected: classes.drawerItemSelected,
+            }}
             onClick={() => {
               setOpenDrawer(false)
               setValue(5)
             }}
             selected={value === 5}
           >
-            <ListItemText
-              className={
-                value === 5
-                  ? [classes.drawerItem, classes.drawerItemSelected].join(" ")
-                  : classes.drawerItem
-              }
-              disableTypography
-            >
+            <ListItemText className={classes.drawerItem} disableTypography>
               Estimate
             </ListItemText>
           </ListItem>
