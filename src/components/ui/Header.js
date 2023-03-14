@@ -227,12 +227,12 @@ const Header = () => {
       <Menu
         id="simple-menu"
         anchorEl={anchorEl}
-        keepMounted
         open={Boolean(anchorEl)}
         onClose={handleClose}
         classes={{ paper: classes.menu }}
         MenuListProps={{ onMouseLeave: handleClose }}
         elevation={0}
+        keepMounted
       >
         {menuOptions.map((option, index) => (
           <MenuItem
@@ -267,6 +267,7 @@ const Header = () => {
         <List disablePadding>
           {routes.map((route, index) => (
             <ListItem
+              key={`ListItem-${index}`}
               divider
               button
               component={Link}
