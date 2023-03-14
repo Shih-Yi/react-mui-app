@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"
 
 import theme from "./ui/Theme"
 import Header from "./ui/Header"
+import Footer from "../components/ui/Footer"
 
 function App() {
   return (
@@ -11,7 +12,11 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route exact path="/" element={<div>Home</div>} />
+          <Route
+            exact
+            path="/"
+            element={<div style={{ height: "2000px" }}>Home</div>}
+          />
           <Route exact path="/services" element={<div>Services</div>} />
           <Route
             exact
@@ -25,6 +30,7 @@ function App() {
           <Route exact path="/contact" element={<div>Contact Us</div>} />
           <Route exact path="/estimate" element={<div>Estimate</div>} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </MuiThemeProvider>
   )
