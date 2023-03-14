@@ -209,7 +209,7 @@ const Header = () => {
       >
         {routes.map((route, index) => (
           <Tab
-            key={`Tab-${index}`}
+            key={`${route}${index}`}
             className={classes.tab}
             component={Link}
             to={route.link}
