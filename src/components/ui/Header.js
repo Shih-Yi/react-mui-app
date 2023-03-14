@@ -39,12 +39,12 @@ function ElevationScroll(props) {
 const useStyles = makeStyles((theme) => ({
   toolbarMargin: {
     ...theme.mixins.toolbar,
-    marginBottom: "2em",
+    marginBottom: "1em",
     [theme.breakpoints.down("md")]: {
-      marginBottom: "1em",
+      marginBottom: "0.5em",
     },
     [theme.breakpoints.down("xs")]: {
-      marginBottom: "0.4em",
+      marginBottom: "0.3em",
     },
   },
   logo: {
@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
       height: "4rem",
     },
     [theme.breakpoints.down("xs")]: {
-      height: "3rem",
+      height: "4rem",
     },
   },
   logoContainer: {
@@ -110,6 +110,9 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerItemSelected: {
     opacity: 1,
+  },
+  appbar: {
+    zIndex: theme.zIndex.modal + 1,
   },
 }))
 
@@ -264,6 +267,7 @@ const Header = () => {
         onOpen={() => setOpenDrawer(true)}
         classes={{ paper: classes.drawer }}
       >
+        <div className={classes.toolbarMargin} />
         <List disablePadding>
           {routes.map((route, index) => (
             <ListItem
@@ -328,7 +332,7 @@ const Header = () => {
   return (
     <React.Fragment>
       <ElevationScroll>
-        <AppBar position="fixed" color="primary">
+        <AppBar position="fixed" color="primary" className={classes.appbar}>
           <Toolbar disableGutters>
             <Button
               component={Link}
