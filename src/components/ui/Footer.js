@@ -49,23 +49,38 @@ const Footer = () => {
         </Grid>
         <Grid item className={classes.gridItem}>
           <Grid container direction="column" spacing={2}>
-            <Grid item className={classes.link}>
+            <Grid item component={Link} to="/services" className={classes.link}>
               Service
             </Grid>
-            <Grid item className={classes.link}>
+            <Grid
+              item
+              component={Link}
+              to="/customsoftware"
+              className={classes.link}
+            >
               Custom Software
             </Grid>
-            <Grid item className={classes.link}>
+            <Grid
+              item
+              component={Link}
+              to="/mobileapps"
+              className={classes.link}
+            >
               Mobile APPs
             </Grid>
-            <Grid item className={classes.link}>
+            <Grid item component={Link} to="/websites" className={classes.link}>
               Websites
             </Grid>
           </Grid>
         </Grid>
         <Grid item className={classes.gridItem}>
           <Grid container direction="column" spacing={2}>
-            <Grid item className={classes.link}>
+            <Grid
+              item
+              component={Link}
+              to="/revolution"
+              className={classes.link}
+            >
               Revolution
             </Grid>
             <Grid item className={classes.link}>
@@ -81,7 +96,7 @@ const Footer = () => {
         </Grid>
         <Grid item className={classes.gridItem}>
           <Grid container direction="column" spacing={2}>
-            <Grid item className={classes.link}>
+            <Grid item component={Link} to="/about" className={classes.link}>
               About Us
             </Grid>
             <Grid item className={classes.link}>
@@ -94,7 +109,7 @@ const Footer = () => {
         </Grid>
         <Grid item className={classes.gridItem}>
           <Grid container direction="column" spacing={2}>
-            <Grid item className={classes.link}>
+            <Grid item component={Link} to="/contact" className={classes.link}>
               Contact Us
             </Grid>
           </Grid>
