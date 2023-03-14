@@ -18,7 +18,7 @@ function App() {
             path="/customsoftware"
             element={<div>Custom Software</div>}
           />
-          <Route exact path="/mobilapps" element={<div>Mobil Apps</div>} />
+          <Route exact path="/mobileapps" element={<div>Mobil Apps</div>} />
           <Route exact path="/websites" element={<div>Websites</div>} />
           <Route exact path="/revolution" element={<div>Revolution</div>} />
           <Route exact path="/about" element={<div>About Us</div>} />
