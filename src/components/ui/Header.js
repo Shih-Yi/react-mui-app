@@ -118,7 +118,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const Header = () => {
+const Header = (props) => {
   const classes = useStyles()
   const iOS =
     typeof window !== "undefined" &&
@@ -126,13 +126,12 @@ const Header = () => {
 
   const myTheme = useTheme()
   const matches = useMediaQuery(myTheme.breakpoints.down("md"))
-  const [value, setValue] = useState(0)
+
   const [anchorEl, setAnchorEl] = useState(null)
-  const [selectedIndex, setSelectedIndex] = useState(0)
   const [openDrawer, setOpenDrawer] = useState(false)
 
   const handleChange = (e, newValue) => {
-    setValue(newValue)
+    props.setValue(newValue)
   }
 
   const handleClick = (event) => {
@@ -142,7 +141,7 @@ const Header = () => {
 
   const handleMenuItemClick = (event, index) => {
     setAnchorEl(null)
-    setSelectedIndex(index)
+    props.setSelectedIndex(index)
   }
 
   const handleClose = () => {
@@ -191,10 +190,13 @@ const Header = () => {
     ;[...menuOptions, ...routes].forEach((route) => {
       switch (window.location.pathname) {
         case `${route.link}`:
-          if (value !== route.activeIndex) {
-            setValue(route.activeIndex)
-            if (route.selectedIndex && route.selectedIndex !== selectedIndex) {
-              setSelectedIndex(route.selectedIndex)
+          if (props.value !== route.activeIndex) {
+            props.setValue(route.activeIndex)
+            if (
+              route.selectedIndex &&
+              route.selectedIndex !== props.selectedIndex
+            ) {
+              props.setSelectedIndex(route.selectedIndex)
             }
           }
           break
@@ -202,12 +204,12 @@ const Header = () => {
           break
       }
     })
-  }, [value])
+  }, [props.value])
 
   const tabs = (
     <React.Fragment>
       <Tabs
-        value={value}
+        value={props.value}
         onChange={handleChange}
         className={classes.tabContainer}
         indicatorColor="primary"
@@ -245,13 +247,13 @@ const Header = () => {
             key={`option-${index}`}
             onClick={(event) => {
               handleMenuItemClick(event, index)
-              setValue(1)
+              props.setValue(1)
               handleClose()
             }}
             component={Link}
             to={option.link}
             classes={{ root: classes.menuItem }}
-            selected={index === selectedIndex && value === 1}
+            selected={index === props.selectedIndex && props.value === 1}
           >
             {option.name}
           </MenuItem>
@@ -281,10 +283,10 @@ const Header = () => {
               to={route.link}
               onClick={() => {
                 setOpenDrawer(false)
-                setValue(route.activeIndex)
+                props.setValue(route.activeIndex)
               }}
               classes={{ selected: classes.drawerItemSelected }}
-              selected={value === route.activeIndex}
+              selected={props.value === route.activeIndex}
             >
               <ListItemText className={classes.drawerItem} disableTypography>
                 {route.name}
@@ -302,9 +304,9 @@ const Header = () => {
             }}
             onClick={() => {
               setOpenDrawer(false)
-              setValue(5)
+              props.setValue(5)
             }}
-            selected={value === 5}
+            selected={props.value === 5}
           >
             <ListItemText className={classes.drawerItem} disableTypography>
               Estimate
@@ -331,7 +333,7 @@ const Header = () => {
               component={Link}
               to="/"
               disableRipple
-              onClick={() => setValue(0)}
+              onClick={() => props.setValue(0)}
               className={classes.logoContainer}
             >
               <img alt="logo" className={classes.logo} src={logo} />
