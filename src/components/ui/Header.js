@@ -89,6 +89,7 @@ const useStyles = makeStyles((theme) => ({
     opacity: 0.5,
     "&:hover": {
       opacity: 1,
+      color: theme.palette.common.darkBlue,
     },
   },
   drawerIconContainer: {

@@ -12,6 +12,7 @@ import useMediaQuery from "@material-ui/core/useMediaQuery"
 import animationData from "../animations/landinganimation/data.js"
 
 import customSoftwareIcon from "../assets/Custom Software Icon.svg"
+import mobileAppsIcon from "../assets/mobileIcon.svg"
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
@@ -89,6 +90,12 @@ const useStyles = makeStyles((theme) => ({
   },
   icon: {
     marginLeft: "2em",
+    [theme.breakpoints.down("xs")]: {
+      marginLeft: 0,
+    },
+  },
+  mobileIcon: {
+    marginRight: "5em",
     [theme.breakpoints.down("xs")]: {
       marginLeft: 0,
     },
@@ -197,6 +204,58 @@ const LandingPage = (props) => {
           </Grid>
         </Grid>
       </Grid>
+      {/* Custom Software Block End */}
+      {/* Mobile APPs Block */}
+      <Grid item>
+        <Grid
+          container
+          direction="row"
+          justify={matchesSM ? "center" : "flex-end"}
+          className={classes.serviceContainer}
+        >
+          <Grid
+            item
+            style={{
+              marginRight: matchesSM ? 0 : "2em",
+              textAlign: matchesSM ? "center" : undefined,
+            }}
+          >
+            <Typography variant="h4">Mobile APP Development</Typography>
+            <Typography variant="subtitle1" className={classes.subtitle}>
+              Extend Functionality. Extend Access. Increase Engagement.
+            </Typography>
+            <Typography variant="subtitle1">
+              Integrate your web experience or create a standalone app <br />
+              with with either mobile platform.
+            </Typography>
+            <Button
+              component={Link}
+              to="/mobileapps"
+              variant="outlined"
+              className={classes.learnButton}
+              onClick={() => {
+                props.setValue(1)
+                props.setSelectedIndex(1)
+              }}
+            >
+              <span style={{ marginRight: 10 }}>Learn More</span>
+              <ButtonArrow
+                width={10}
+                height={10}
+                fill={theme.palette.common.blue}
+              />
+            </Button>
+          </Grid>
+          <Grid item>
+            <img
+              className={classes.mobileIcon}
+              alt="custom software icon"
+              src={mobileAppsIcon}
+            />
+          </Grid>
+        </Grid>
+      </Grid>
+      {/* Mobile APPs Block end */}
     </Grid>
   )
 }
