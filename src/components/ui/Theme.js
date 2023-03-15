@@ -37,6 +37,15 @@ const theme = createMuiTheme({
       color: mainBlue,
       lineHeight: 2.0,
     },
+    learnButton: {
+      borderColor: mainBlue,
+      color: mainBlue,
+      borderWidth: 2,
+      textTransform: "none",
+      borderRadius: 50,
+      fontFamily: "Roboto",
+      fontWeight: 700,
+    },
   },
 })
 
