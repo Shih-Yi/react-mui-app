@@ -2,7 +2,7 @@ import { createMuiTheme } from "@material-ui/core/styles"
 import purple from "@material-ui/core/colors/purple"
 import blue from "@material-ui/core/colors/blue"
 
-const mainBlue = "#d7e4fa"
+const mainBlue = "#6b95b5"
 
 const theme = createMuiTheme({
   palette: {
@@ -29,6 +29,13 @@ const theme = createMuiTheme({
       fontFamily: "Pacifico",
       fontSize: "1rem",
       textTransform: "none",
+    },
+    h2: {
+      fontFamily: "Raleway",
+      fontWeight: 700,
+      fontSize: "2.3rem",
+      color: mainBlue,
+      lineHeight: 2.0,
     },
   },
 })
